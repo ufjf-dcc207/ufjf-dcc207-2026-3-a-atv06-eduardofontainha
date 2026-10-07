@@ -11,14 +11,18 @@ const EMOJI_MAP = new Map<EMOJI_KEYS, string>([
 
 export default function Emoji(){
     let status:EMOJI_KEYS = "sick";
-    
+    function happyClick(){
+        console.log(status);
+        console.log("Happy!");
+        status = "happy";
+    }
     return (
         <>
             <div className="emoji">
                 {EMOJI_MAP.get(status)||"😶"}
             </div>
             <div className = "acoes">
-                <button >Happy</button>
+                <button onClick={happyClick}>Happy</button>
             </div>
         </>
     )
