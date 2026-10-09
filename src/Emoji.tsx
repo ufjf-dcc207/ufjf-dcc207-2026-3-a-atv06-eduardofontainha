@@ -14,6 +14,16 @@ export default function Emoji(){
     const [status, setStatus] = useState<EMOJI_KEYS>('sick')
     function happyClick(){
         console.log("Status: " + status);
+        setStatus("dead");
+        console.log("Status: " + status);
+    }
+    function sickClick(){
+        console.log("Status: " + status);
+        setStatus("sick");
+        console.log("Status: " + status);
+    }
+    function deadClick(){
+        console.log("Status: " + status);
         setStatus("happy");
         console.log("Status: " + status);
     }
@@ -24,6 +34,8 @@ export default function Emoji(){
             </div>
             <div className = "acoes">
                 <button onClick={happyClick}>Happy</button>
+                <button onClick={sickClick}>Sick</button>
+                <button onClick={deadClick}>Dead</button>
             </div>
         </>
     )
