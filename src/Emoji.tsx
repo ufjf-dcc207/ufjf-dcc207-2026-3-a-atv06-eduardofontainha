@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import './Emoji.css'
+import LifeBar from './LifeBar';
 
 type EMOJI_KEYS = "happy" | "sick" | "dead";
 const EMOJI_MAP = new Map<EMOJI_KEYS, string>([
@@ -47,12 +48,14 @@ export default function Emoji(){
             <div className="emoji">
                 {EMOJI_MAP.get(status)||"😶"}
             </div>
+            
             <div className = "acoes">
                 <button onClick={happyClick}>Happy</button>
                 <button onClick={sickClick}>Sick</button>
                 <button onClick={deadClick}>Dead</button>
                 <button onClick={cicleClick}>Cicle</button>
             </div>
+            <LifeBar></LifeBar>
         </>
     )
     
