@@ -14,8 +14,8 @@ export default function Emoji(){
     const [status, setStatus] = useState<EMOJI_KEYS>('sick')
     function happyClick(){
         console.log("Status: " + status);
-        setStatus("dead");
-        console.log("Status: " + status);
+        setStatus("happy");
+        console.log("Status: " + status);       
     }
     function sickClick(){
         console.log("Status: " + status);
@@ -24,8 +24,23 @@ export default function Emoji(){
     }
     function deadClick(){
         console.log("Status: " + status);
-        setStatus("happy");
+        setStatus("dead");
         console.log("Status: " + status);
+    }
+    function cicleClick(){
+        switch (status){
+            case "dead":
+                setStatus("happy");
+                break;
+            case "happy":
+                setStatus("sick");
+                break;
+            case "sick":
+                setStatus("dead");
+                break;
+            default:
+                setStatus("happy");
+        }
     }
     return (
         <>
@@ -36,6 +51,7 @@ export default function Emoji(){
                 <button onClick={happyClick}>Happy</button>
                 <button onClick={sickClick}>Sick</button>
                 <button onClick={deadClick}>Dead</button>
+                <button onClick={cicleClick}>Cicle</button>
             </div>
         </>
     )
