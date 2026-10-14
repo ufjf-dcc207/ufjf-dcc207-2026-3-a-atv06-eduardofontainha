@@ -1,7 +1,13 @@
 .emoji {
-    margin: 10px 0 0 0;
-    font-size: 4em;
-}
-button{
-    margin: 50px 0 0 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    & .face {
+        font-size: 4em;
+        display: grid;
+        place-content: center;
+    }
+    & .acoes, & .atributos  {
+        display: flex;
+        flex-direction: column;
+    }
 }
