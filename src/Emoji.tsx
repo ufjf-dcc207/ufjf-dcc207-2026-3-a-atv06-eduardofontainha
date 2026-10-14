@@ -1,63 +1,65 @@
-import { useState } from 'react';
-import './Emoji.css'
-import LifeBar from './LifeBar';
+
+import { useState } from "react";
+import "./Emoji.css";
+
 
 type EMOJI_KEYS = "happy" | "sick" | "dead";
 const EMOJI_MAP = new Map<EMOJI_KEYS, string>([
     ["happy", "🙂"],
     ["sick", "🤢"],
-    ["dead", "😵"]
-])
+    ["dead", "😵"],
+]);
+import Atributo from "./Atributo";
+export default function Emoji() {
+
+    const [status, setStatus] = useState<EMOJI_KEYS>("happy")
+    const [vida, setVida] = useState<number>(5);
+    const [energia, setEnergia] = useState<number>(4);
+    const [comida, setComida] = useState<number>(1);
+    const [agua, setAgua] = useState<number>(2);
 
 
-
-export default function Emoji(){
-    const [status, setStatus] = useState<EMOJI_KEYS>('sick')
-    function happyClick(){
-        console.log("Status: " + status);
-        setStatus("happy");
-        console.log("Status: " + status);       
+    function alimentarClick() {
+        setComida(Math.min(5, comida + 1));
     }
-    function sickClick(){
-        console.log("Status: " + status);
-        setStatus("sick");
-        console.log("Status: " + status);
+
+    function hidratarClick() {
+        setAgua(Math.min(5, agua + 1));
     }
-    function deadClick(){
-        console.log("Status: " + status);
+    
+    function altenarLuzClick() {
+        console.log("Status: ", status);
+        console.log("Dead!");
         setStatus("dead");
-        console.log("Status: " + status);
+        console.log("Status: ", status);
     }
-    function cicleClick(){
-        switch (status){
+     function cicloClick() {
+        switch (status) {
             case "dead":
-                setStatus("happy");
-                break;
-            case "happy":
-                setStatus("sick");
-                break;
-            case "sick":
-                setStatus("dead");
-                break;
-            default:
                 setStatus("happy");
         }
     }
+
     return (
         <>
-            <div className="emoji">
-                {EMOJI_MAP.get(status)||"😶"}
+        <div className="emoji">
+            <div className="face">
+                {EMOJI_MAP.get(status) || "🫥"}
             </div>
-            
-            <div className = "acoes">
-                <button onClick={happyClick}>Happy</button>
-                <button onClick={sickClick}>Sick</button>
-                <button onClick={deadClick}>Dead</button>
-                <button onClick={cicleClick}>Cicle</button>
+            <div className="atributos">
+                <Atributo icone="❤️" valor={vida}></Atributo>
+                <Atributo icone="🔋" valor={energia}></Atributo>
+                <Atributo icone="💧" valor={agua}></Atributo>
+                <Atributo icone="🍗" valor={comida}></Atributo>
             </div>
-            <LifeBar></LifeBar>
+            <div className="acoes">
+                <button onClick={alimentarClick}>Alimentar</button>
+                <button onClick={hidratarClick}>Hidratar</button>
+                <button onClick={altenarLuzClick}>Ligar Luz</button>
+                <button onClick={cicloClick}>Ciclo</button>
+            </div>
+        </div>
         </>
+        
     )
-    
-    
 }
